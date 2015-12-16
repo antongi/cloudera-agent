@@ -1,5 +1,5 @@
 # Cloudera Agent
-# v1.1
+# v1.2
 
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
@@ -7,7 +7,7 @@ MAINTAINER Anton Pestov <anton@docker.com>
 #SSH
 RUN apt-get -qq update && apt-get -qq install -y openssh-server curl
 RUN mkdir /var/run/sshd
-RUN echo 'root:Qwerty1' | chpasswd
+#RUN echo 'root:pass' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
@@ -29,9 +29,8 @@ RUN apt-get -qq update
 
 RUN apt-get -qq install -y oracle-j2sdk1.7 cloudera-manager-agent cloudera-manager-daemons
 
-RUN server_ip=$1
 RUN service cloudera-scm-agent stop
-RUN sed -i "s/server_host=localhost/server_host=${server_ip}/g" /etc/cloudera-scm-agent/config.ini
+RUN sed -i "s/server_host=localhost/server_host=${CM_SERVER_URL}/g" /etc/cloudera-scm-agent/config.ini
 #[ ! -z "$CM_SERVER_IP" ] && configure_agent $CM_SERVER_IP
 RUN service cloudera-scm-agent restart
 
