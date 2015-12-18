@@ -1,5 +1,5 @@
 # Cloudera Agent
-# v1.5
+# v1.6
 
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
@@ -35,3 +35,7 @@ RUN apt-get -qq install -y oracle-j2sdk1.7 cloudera-manager-agent cloudera-manag
 RUN service cloudera-scm-agent stop
 RUN sed -i "s|server_host=.*|server_host=${CM_SERVER_URL}|" /etc/cloudera-scm-agent/config.ini
 RUN service cloudera-scm-agent restart
+
+ADD post-install.sh post-install.sh
+RUN chmod +x post-install.sh
+RUN post-install.sh
