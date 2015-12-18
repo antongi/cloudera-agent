@@ -1,5 +1,5 @@
 # Cloudera Agent
-# v1.6
+# v1.7
 
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
@@ -38,4 +38,4 @@ RUN service cloudera-scm-agent restart
 
 ADD post-install.sh post-install.sh
 RUN chmod +x post-install.sh
-RUN post-install.sh
+RUN /bin/bash -c "post-install.sh"
