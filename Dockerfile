@@ -36,6 +36,6 @@ RUN service cloudera-scm-agent stop
 RUN sed -i "s|server_host=.*|server_host=${CM_SERVER_URL}|" /etc/cloudera-scm-agent/config.ini
 RUN service cloudera-scm-agent restart
 
-ADD post-install.sh post-install.sh
-RUN chmod +x post-install.sh
-RUN /bin/bash -c "post-install.sh"
+ADD post-install.sh /tmp/post-install.sh
+RUN chmod +x /tmp/post-install.sh
+RUN /bin/bash -c /tmp/post-install.sh
