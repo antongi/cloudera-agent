@@ -1,5 +1,5 @@
 # Cloudera Agent
-# v1.4
+# v1.5
 
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
@@ -20,6 +20,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
+RUN service ssh restart
 
 # Add a Repository Key
 RUN curl -L https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list -o /etc/apt/sources.list.d/cloudera.list
