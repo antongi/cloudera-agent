@@ -4,7 +4,7 @@
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
 
-ARG CM_SERVER_URL
+ENV CM_SERVER_URL 46.4.62.103
 
 #SSH
 RUN apt-get -qq update && apt-get -qq install -y openssh-server curl
