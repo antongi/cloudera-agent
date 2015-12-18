@@ -1,8 +1,10 @@
 # Cloudera Agent
-# v1.3
+# v1.4
 
 FROM ubuntu:14.04
 MAINTAINER Anton Pestov <anton@docker.com>
+
+ARG CM_SERVER_URL
 
 #SSH
 RUN apt-get -qq update && apt-get -qq install -y openssh-server curl
